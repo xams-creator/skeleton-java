@@ -1,0 +1,63 @@
+<configuration scan="true" debug="false">
+    <conversionRule conversionWord="clr"
+                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%black(%d{yyyy-MM-dd HH:mm:ss.SSS}) %clr(%5p) %magenta(${PID:-}) --- [%15.15t] %cyan(%-40.40logger{39}) : %msg%n"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ELK" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "tags": ["skeleton-java-server"],
+                        "project": "skeleton-java-server",
+                        "timestamp": "%date{\"yyyy-MM-dd'T'HH:mm:ss,SSSZ\"}",
+                        "log_level": "%level",
+                        "traceId": "%X{X-B3-TraceId:-}",
+                        "spanId": "%X{X-B3-SpanId:-}",
+                        "parentSpanId": "%X{X-B3-ParentSpanId:-}",
+                        "thread": "%thread",
+                        "class_name": "%class",
+                        "line_number": "%line",
+                        "message": "%message",
+                        "stack_trace": "%exception"
+                        }
+                    </pattern>
+                </pattern>
+                <mdc/>
+                <arguments/>
+            </providers>
+        </encoder>
+    </appender>
+
+
+    <springProfile name="local,default">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <root level="INFO">
+            <!--<appender-ref ref="LogStash"/>-->
+            <appender-ref ref="ELK"/>
+        </root>
+        <!--<logger additivity="false" level="DEBUG" name="com.xams.skeleton">-->
+        <!--<appender-ref ref="ELK"/>-->
+        <!--</logger>-->
+    </springProfile>
+
+    <springProfile name="staging, preprod, prod">
+        <root level="INFO">
+            <appender-ref ref="ELK"/>
+        </root>
+    </springProfile>
+
+</configuration>

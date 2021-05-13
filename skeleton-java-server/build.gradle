@@ -1,0 +1,33 @@
+group = 'com.xams.skeleton'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+//    compile "com.baomidou:mybatis-plus-boot-starter:3.4.2"
+
+    compile "org.springframework.boot:spring-boot-starter-websocket"
+    implementation "org.springframework.boot:spring-boot-starter-jdbc"
+//    implementation "org.springframework:spring-jdbc"
+    compile "org.springframework.boot:spring-boot-configuration-processor"
+
+//    compile "org.springframework.boot:spring-boot-starter-mail"
+
+//    implementation "org.springframework:spring-messaging"
+//        implementation "org.springframework.kafka:spring-kafka"
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    compile('org.springframework.cloud:spring-cloud-starter-openfeign')
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "net.logstash.logback:logstash-logback-encoder:5.3"
+
+    compile "mysql:mysql-connector-java"
+    compile "cglib:cglib:3.2.4"
+
+    implementation project(":skeleton-java-api")
+}

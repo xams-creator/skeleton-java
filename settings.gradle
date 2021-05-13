@@ -1,0 +1,5 @@
+rootProject.name = "skeleton-java"
+
+include ":skeleton-java-api"
+include ":skeleton-java-server"
+include ":skeleton-java-client"
