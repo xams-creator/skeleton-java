@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = "2.2.5.RELEASE"
-        springCloudVersion = "Hoxton.SR8"
+        springBootVersion = "2.3.12.RELEASE"
+        springCloudVersion = "Hoxton.SR12"
         nexusUrl = ""
     }
     repositories {
@@ -10,8 +10,8 @@ buildscript {
     }
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.2.5.RELEASE"
-        classpath "org.springframework.boot:spring-boot-maven-plugin:2.2.5.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.3.12.RELEASE"
+        classpath "org.springframework.boot:spring-boot-maven-plugin:2.3.12.RELEASE"
     }
 }
 
@@ -21,7 +21,7 @@ plugins {
     id "io.spring.dependency-management" version "1.0.8.RELEASE"
     id "com.github.spotbugs" version "2.0.0"
     id "pmd"
-    id "org.springframework.boot" version "2.2.5.RELEASE"
+    id "org.springframework.boot" version "2.3.12.RELEASE"
     id "org.sonarqube" version "2.7.1"
 }
 

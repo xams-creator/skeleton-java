@@ -1,4 +1,4 @@
-package com.xams.skeleton.server.entity;
+package com.xams.skeleton.server.business.order.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
