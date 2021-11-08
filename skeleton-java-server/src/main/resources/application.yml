@@ -1,0 +1,48 @@
+server:
+    port: 7777
+    max-http-header-size: 32KB
+
+spring:
+    output:
+        ansi:
+            enabled: ALWAYS
+
+    #    jackson:
+    #        serialization:
+    #            indent_output: true
+
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 15MB
+            max-request-size: 15MB
+
+    flyway:
+        enabled: false
+
+
+    jpa:
+        show-sql: true
+        hibernate:
+            naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        #            naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                enable_lazy_load_no_trans: true
+                format_sql: true
+                use_sql_comments: false
+
+logging:
+    level:
+        root: info
+        org:
+            springframework:
+                web:
+                    filter:
+                        CommonsRequestLoggingFilter: debug
+            hibernate:
+                SQL: debug
+                type.descriptor.sql.BasicBinder: trace
+
+#
+

@@ -1,66 +1,17 @@
-server:
-    port: 7777
-
 spring:
+    application:
+        name: skeleton-java-server
     profiles:
         active: ${PROFILE_NAME:local}   # 使用 11131
-
-    output:
-        ansi:
-            enabled: ALWAYS
-
-    #    jackson:
-    #        serialization:
-    #            indent_output: true
-
-    servlet:
-        multipart:
-            enabled: true
-            max-file-size: 15MB
-            max-request-size: 15MB
-
-    flyway:
-        enabled: false
 
     cloud:
         config:
             enabled: false
+        discovery:
+            enabled: false
         inetutils:
-            ignoredInterfaces: ['VMware.*']
+            ignoredInterfaces: [ 'VMware.*' ]
 
-    application:
-        name: skeleton-java-server
-
-
-    datasource:
-        url: jdbc:mysql://${DEFAULT_HOST}:3306/${JDBC_DATABASE}?useSSL=false&useTimezone=true&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&characterEncoding=UTF-8
-        username: ${JDBC_USER}
-        password: ${JDBC_PASS}
-        hikari:
-            validation-timeout: 3000
-            connection-timeout: 20000
-            connection-test-query: SELECT 1
-            minimum-idle: 1
-            maximum-pool-size: 2
-            max-lifetime: 30000
-
-    jpa:
-        show-sql: true
-        hibernate:
-            naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-        #            naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        properties:
-            hibernate:
-                enable_lazy_load_no_trans: true
-                format_sql: true
-                use_sql_comments: false
-
-logging:
-    level:
-        org:
-            hibernate:
-                SQL: debug
-                type.descriptor.sql.BasicBinder: trace
 #配置eureka
 eureka:
     client:
@@ -72,5 +23,4 @@ eureka:
         prefer-ip-address: true
 #        status-page-url-path: /info
 #        health-check-url-path: /health
-#
 

@@ -1,3 +1,5 @@
+import com.github.spotbugs.SpotBugsTask
+
 buildscript {
     ext {
         springBootVersion = "2.3.12.RELEASE"
@@ -66,7 +68,7 @@ allprojects {
         toolVersion = "6.15.0"
     }
 
-    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    tasks.withType(SpotBugsTask) {
         ignoreFailures = false
         reports {
             xml.enabled false
@@ -92,6 +94,14 @@ allprojects {
             }
             resources {
                 srcDir("src/main/resources")
+            }
+        }
+        test{
+            java {
+                srcDir("src/test/java")
+            }
+            resources {
+                srcDir("src/test/resources")
             }
         }
     }
@@ -129,6 +139,10 @@ allprojects {
 
     dependencies {
         testImplementation "org.springframework.boot:spring-boot-starter-test"
+        testImplementation(platform("org.junit:junit-bom:5.8.1"))
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+        testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
     }
 
     configurations {
